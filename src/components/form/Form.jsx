@@ -1,7 +1,7 @@
 import React from 'react'
 import { validation } from './validation.js'
 
-export default function Form() {
+export default function Form(props) {
     const [userData, setUserData] = React.useState({
         username: "",
         password: ""
@@ -18,10 +18,14 @@ export default function Form() {
         setErrors(validation({...userData, [e.target.name]: e.target.value}))
     }
 
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      props.login(userData)
+    }
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
             id="username"

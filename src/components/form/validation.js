@@ -10,4 +10,5 @@ export function validation(userData) {
 
     if(!regexPassword.test(userData.password)) errors.password = 'La contaseña debe tener al menos un numero'
     else if(userData.password < 6 && userData.password > 10) errors.password = 'La contraseña debe tener una longitud entre 6 y 10 caracteres'
+    return errors;
 }
