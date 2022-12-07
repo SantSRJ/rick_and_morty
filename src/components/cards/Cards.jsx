@@ -1,5 +1,6 @@
 import Card from '../card/Card';
 
+
 export default function Cards(props) {
    const { characters, onClose } = props;
    return (
