@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import About from './components/about/About.jsx'
 import Detail from './components/detail/Detail.jsx' 
 import Form from './components/form/Form'
+import Favorites from './components/favorites/Favorites.jsx'
 
 function App () {
   const location = useLocation();
@@ -14,15 +15,6 @@ function App () {
   const [access, setAccess] = useState(false);
   const username = 'srjmendoza@hotmail.com';
   const password = 'SoyHenry2022';
-
-  function login(userData) {
-    if (userData.password === password && userData.username === username) {
-      setAccess(true);
-      navigate('/home');
-    } else {
-      alert('Usuario o contraseña incorrecta')
-    }
-  }
 
   function onSearch(character) {
     fetch(`https://rickandmortyapi.com/api/character/${character}`)
@@ -43,24 +35,29 @@ function App () {
 
   useEffect(() => {
     !access && navigate('/');
-  }, [access]);
+}, [access, navigate]);
+
+  function login(userData) {
+    if (userData.password === password && userData.username === username) {
+      setAccess(true);
+      navigate('/home');
+    } else {
+      alert('Usuario o contraseña incorrecta')
+    }
+  }
 
   return (
     <div className='App' style={{ padding: '25px' }}>
-      <div>
         {location.pathname !== '/' && <Nav onSearch={onSearch} />}
-      </div>
       <Routes>
         <Route path="/" element={<Form login={login}/>}/>
         <Route path="/home" element={<Cards characters={characters} onClose={onClose}/>}/>
+        <Route path="/favorites" element={<Favorites/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/detail/:detailId" element={<Detail/>}/> 
       </Routes>
-      <div>
-        
-      </div>
     </div>
-  )
+  );
 }
 
 export default App

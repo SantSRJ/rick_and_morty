@@ -1,5 +1,5 @@
 import React from 'react'
-import { validation } from './validation.js'
+import { validation } from './validation.js';
 
 export default function Form(props) {
     const [userData, setUserData] = React.useState({
@@ -15,12 +15,12 @@ export default function Form(props) {
 
     function handleInputChange(e) {
         setUserData({...userData, [e.target.name]: e.target.value});
-        setErrors(validation({...userData, [e.target.name]: e.target.value}))
+        setErrors(validation({...userData, [e.target.name]: e.target.value}));
     }
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      props.login(userData)
+      props.login(userData);
     }
 
   return (
@@ -35,7 +35,8 @@ export default function Form(props) {
             value={userData.username}
             onChange={handleInputChange}
         />
-        <p>{errors.name}</p>
+        {errors.username}<p>{errors.username}</p>
+
         <label htmlFor="password">Password:</label>
         <input
             id="password"
@@ -44,9 +45,9 @@ export default function Form(props) {
             value={userData.password}
             onChange={handleInputChange}
         />
-        <p>{errors.password}</p>
-        <input type="submit"/>
+        {errors.password}<p>{errors.password}</p>
+        <button type="submit">Ingresar</button>
       </form>
     </div>
-  )
+  );
 }
