@@ -1,6 +1,8 @@
 .App {
    text-align: center;
    background-image: url("./components/assets/606024.jpg");
-   background-repeat: repeat;
+   background-repeat: no-repeat;
    background-size:cover;
+   background-position: center;
+   height: 100vh;
 }
